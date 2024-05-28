@@ -1,0 +1,10 @@
+常用的C++演算法：binary search
+binary search可對「已經排序」過的資料進行搜尋
+在使用前需要先sort()
+sort(a.begin(),a.end());
+1.尋找陣列中「大於或等於」fl的「最小值」的索引：
+  lower_bound(a.begin(),a.end(),fd);
+2.尋找陣列中「大於」fl的「最小值」的索引：
+  upper_bound(a.begin(),a.end(),fd);
+＊資料型態都為iterator，若要轉為int型態則減去array即可。
+  int j = lower_bound(a.begin(),a.end(),fd)-a;
