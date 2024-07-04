@@ -1,0 +1,36 @@
+DFS(深度優先搜尋)
+[觀念]由graph的某一點開始search，先搜尋edge上尉搜尋的一點，盡可能往深處搜索，
+     直到最後，再回溯到前一個節點，持續拜訪為搜尋的節點，直到到達目標節點或已經遍歷所有的節點
+[實作]以遞迴方式實現。
+[用途]用來遍歷樹(tree)或圖(graph)的演算法
+【範例】ZeroJudge d908: 4. 最佳路徑
+
+  
+#include<bits/stdc++.h>
+using namespace std;
+char start;
+map<char,vector <pair<char,int> > > mp;
+
+int func(int start,int total){
+	if(!mp.count(start))return total;
+	int maxi = 0;
+	for(pair<char,int> p:mp[start]){
+		maxi = max(func(p.first,total+p.second),maxi);
+	} 
+	return maxi;
+}
+
+int main()
+{
+	int num;
+	while(cin>>start>>num){
+		mp.clear();
+		char a,b;
+		int n;
+		for(int i=0;i<num;i++){
+			cin>>a>>b>>n;
+			mp[a].push_back({b,n});
+		}
+		cout<<func(start,0)<<'\n';
+	}
+}
